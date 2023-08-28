@@ -1,0 +1,8 @@
+version : "1"
+services :
+  web :
+     image : zilani96/wordpressimage:latest
+     ports :
+         - "80:80"
+     #volumes:
+      #- ./volume/store_data/db.sqlite3:/data/db.sqlite3
