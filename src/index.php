@@ -1,1 +1,2 @@
-<?php phpinfo(); ?>
+#<?php phpinfo(); ?>
+**********  This is new update ***********    
