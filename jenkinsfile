@@ -1,0 +1,32 @@
+pipeline{
+agent any
+stages{
+  stage("code clone"){
+   steps{
+    git url :"https://github.com/Zilani1996/wordpress",branch:"master"
+    }
+  }
+  stage("code build"){
+    steps{
+          echo "Build the image"
+         sh "docker build -t wordpressimage . "
+        } 
+    }
+     stage("push the docker Hub"){
+       steps{
+          echo "Push the image to docker hub"
+           withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
+           sh "docker tag wordpressimage ${env.dockerHubUser}/wordpressimage:latest"
+           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass} "
+           sh "docker push ${env.dockerHubUser}/wordpressimage:latest"
+           }
+
+           }
+     }
+     stage("deploy code"){
+         steps{
+          sh "docker-compose down && docker-compose up -d"
+              }
+        }
+  }
+}
