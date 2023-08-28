@@ -3,7 +3,7 @@ agent any
 stages{
   stage("code clone"){
    steps{
-    git url :"https://github.com/Zilani1996/wordpress",branch:"master"
+    git url :"https://github.com/Zilani1996/wordpress.git",branch:"master"
     }
   }
   stage("code build"){
