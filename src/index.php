@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>PHP Test</title>
+        <title>Ewebcore</title>
     </head>
     <body>
         <?php echo '<p>Welcome World</p>'; ?>
