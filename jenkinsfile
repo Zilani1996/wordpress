@@ -31,15 +31,14 @@ stages{
             }
         }
 
-
-   /*     stage('Cleanup') {
+        stage('Cleanup') {
             steps {
                 script {
                     def kubeConfigPath = writeKubeConfig("${env.WORKSPACE}/kubeconfig", env.KUBE_CONFIG)
                     sh "kubectl --kubeconfig=${kubeConfigPath} delete -f deploy.yaml"
                 }
             }
-     /*   }
+      }
     }
 
 }
