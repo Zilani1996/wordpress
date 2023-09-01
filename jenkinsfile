@@ -2,8 +2,8 @@ pipeline{
 agent any
 
  environment {
-        DOCKER_REGISTRY = 'your-digital-ocean-registry-url'
-        KUBE_CONFIG = credentials('your-kubeconfig-credential-id')
+        DOCKER_REGISTRY = 'registry.digitalocean.com/vendorcity'
+        KUBE_CONFIG = credentials('dop_v1_a368caa9815086b10972210118a3f162f73f6068d64c5d15f1061484cfda8c96')
     }
 
 stages{
@@ -35,7 +35,7 @@ stages{
             steps {
                 script {
                     def kubeConfigPath = writeKubeConfig("${env.WORKSPACE}/kubeconfig", env.KUBE_CONFIG)
-                    sh "kubectl --kubeconfig=${kubeConfigPath} delete -f kubernetes-deployment.yaml"
+                    sh "kubectl --kubeconfig=${kubeConfigPath} delete -f deploy.yaml"
                 }
             }
         }
