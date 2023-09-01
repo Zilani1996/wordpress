@@ -26,7 +26,7 @@ stages{
             steps {
                 script {
                     def kubeConfigPath = writeKubeConfig("${env.WORKSPACE}/kubeconfig", env.KUBE_CONFIG)
-                    sh "kubectl --kubeconfig=${kubeConfigPath} apply -f kubernetes-deployment.yaml"
+                    sh "kubectl --kubeconfig=${kubeConfigPath} apply -f deploy.yaml"
                 }
             }
         }
