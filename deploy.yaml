@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: wordpress1
-        image: registry.digitalocean.com/vendorcity/wordpressimage2 
+        image: registry.digitalocean.com/vendorcity/wordpressimage3 
         ports:
         - containerPort: 80
 
