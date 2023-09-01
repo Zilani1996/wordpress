@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-app
+  labels:
+    app: Ewebcore
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: Ewebcore
+  template:
+    metadata:
+      labels:
+        app: Ewebcore
+    spec:
+      containers:
+      - name: wordpress
+        image: zilani96/wordpressimage
+        ports:
+        - containerPort: 80
