@@ -42,17 +42,6 @@ stages{
      /*   }
     }
 
-    post {
-        always {
-            deleteDir()
-        }
-    }
 }
 
-def writeKubeConfig(String filePath, String kubeConfig) {
-    def kubeConfigContent = credentials(kubeConfig).replaceAll("\r\n?", "\n")
-    writeFile file: filePath, text: kubeConfigContent
-    return filePath
-}
 
-    
