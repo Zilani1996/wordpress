@@ -15,7 +15,7 @@ stages{
     }
   }
 
-stage('Build and Push Docker Image') {
+stage("Build and Push Docker Image") {
             steps {
                 script {
                     def dockerImage = docker.build("${registry.digitalocean.com/vendorcity}/${image1}:${latest}")
