@@ -7,6 +7,18 @@ stages{
     git url :"https://github.com/Zilani1996/wordpress.git",branch:"master"
     }
   }
+
+stage('Build and Push Docker Image') {
+            steps {
+                script {
+                    def dockerImage = docker.build("image")
+                    dockerImage.push("registry.digitalocean.com/vendorcity/image1:v1")
+                }
+            }
+        }
+
+
+
       }
   }
   
