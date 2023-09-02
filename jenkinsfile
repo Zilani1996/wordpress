@@ -3,9 +3,8 @@ agent any
 
 
  environment {
-        // Set your environment variables
-        DOCKER_REGISTRY = "registry.digitalocean.com/vendorcity"
-         KUBECONFIG = credentials('dop_v1_a368caa98150484cfda8c9686b10972210118a3f162f73f6068d64c5d15f1061')
+        DOCKER_REGISTRY = 'registry.digitalocean.com/vendorcity'
+        KUBE_CONFIG = credentials('dop_v1_a368caa98150484cfda8c9686b10972210118a3f162f73f6068d64c5d15f1061')
     }
 
 stages{
@@ -15,21 +14,44 @@ stages{
     }
   }
 
-stage("Build and Push Docker Image") {
+
+stage('Build') {
             steps {
                 script {
-                    def dockerImage = docker.build("${registry.digitalocean.com/vendorcity}/${image1}:${latest}")
-                    docker.withRegistry("${egistry.digitalocean.com/vendorcity}", 'dop_v1_a368caa98150484cfda8c9686b10972210118a3f162f73f6068d64c5d15f1061') {
-                        dockerImage.push()
-                    }
+                    def appImage = docker.build("${DOCKER_REGISTRY}/wordpress-app:${env.BUILD_NUMBER}")
+                    appImage.push()
                 }
             }
         }
 
+        stage('Deploy') {
+            steps {
+                script {
+                    def kubeConfigPath = writeKubeConfig("${env.WORKSPACE}/kubeconfig", env.KUBE_CONFIG)
+                    sh "kubectl --kubeconfig=${kubeConfigPath} apply -f deploy.yaml"
+                }
+            }
+        }
 
+        stage('Cleanup') {
+            steps {
+                script {
+                    def kubeConfigPath = writeKubeConfig("${env.WORKSPACE}/kubeconfig", env.KUBE_CONFIG)
+                    sh "kubectl --kubeconfig=${kubeConfigPath} delete -f deploy.yaml"
+                }
+            }
+        }
+    }
 
-      }
-  }
-  
+    post {
+        always {
+            deleteDir()
+        }
+    }
+}
 
-
+def writeKubeConfig(String filePath, String kubeConfig) {
+    def kubeConfigContent = credentials(kubeConfig).replaceAll("\r\n?", "\n")
+    writeFile file: filePath, text: kubeConfigContent
+    return filePath
+}
