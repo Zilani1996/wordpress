@@ -1,6 +1,13 @@
 pipeline{
 agent any
 
+
+ environment {
+        // Set your environment variables
+        DOCKER_REGISTRY = "registry.digitalocean.com/vendorcity"
+        KUBECONFIG = credentials('dop_v1_a368caa98150484cfda8c9686b10972210118a3f162f73f6068d64c5d15f1061')
+    }
+
 stages{
   stage("code clone"){
    steps{
@@ -11,8 +18,10 @@ stages{
 stage('Build and Push Docker Image') {
             steps {
                 script {
-                    def dockerImage = docker.build("image")
-                    dockerImage.push("registry.digitalocean.com/vendorcity/image1:v1")
+                    def dockerImage = docker.build("${registry.digitalocean.com/vendorcity}/${image1}:${latest}")
+                    docker.withRegistry("${egistry.digitalocean.com/vendorcity}", 'dop_v1_a368caa98150484cfda8c9686b10972210118a3f162f73f6068d64c5d15f1061') {
+                        dockerImage.push()
+                    }
                 }
             }
         }
