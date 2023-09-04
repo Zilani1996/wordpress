@@ -41,16 +41,13 @@ stage("Build") {
                 }
             }
         }
-    }
 
 post {
         always {
             deleteDir()
         }
-success {
-            echo "I succeeded!"
-    }
-}
+     }
+  }
 }
 
 def writeKubeConfig(String filePath, String kubeConfig) {
