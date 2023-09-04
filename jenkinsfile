@@ -42,12 +42,16 @@ stage("Build") {
             }
         }
      }
-
-post {
+  post {
         always {
-            deleteDir()
+            script {
+                if (getContext(hudson.FilePath)) {
+                    deleteDir()
+                }
+            }
         }
-     }
+    }
+
   }
 
 def writeKubeConfig(String filePath, String kubeConfig) {
