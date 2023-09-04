@@ -47,6 +47,8 @@ post {
         always {
             deleteDir()
         }
+success {
+            echo "I succeeded!"
     }
 }
 
