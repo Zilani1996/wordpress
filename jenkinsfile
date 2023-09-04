@@ -2,7 +2,7 @@ pipeline{
 agent any
 
  environment {
-       regisrtCredential = 'registry_id'
+        registryCredential = 'registry_id'
         DOCKER_REGISTRY = 'registry.digitalocean.com/vendorcity'
         DOCKER_USERNAME = credentials('dop_v1_a368caa98150484cfda8c9686b10972210118a3f162f73f6068d64c5d15f1061')
         DOCKER_PASSWORD = credentials('dop_v1_a368caa98150484cfda8c9686b10972210118a3f162f73f6068d64c5d15f1061')
