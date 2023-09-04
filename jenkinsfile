@@ -44,11 +44,7 @@ stage("Build") {
         }
     }
 
-    post {
-        always {
-            deleteDir()
-        }
-    }
+   
 }
 
 def writeKubeConfig(String filePath, String kubeConfig) {
