@@ -33,7 +33,6 @@ stage("Build") {
                 }
             }
         }
-
         stage("Cleanup") {
             steps {
                 script {
@@ -49,7 +48,6 @@ post {
             deleteDir()
         }
     }
-   
 }
 
 def writeKubeConfig(String filePath, String kubeConfig) {
