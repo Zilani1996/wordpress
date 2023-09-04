@@ -51,6 +51,7 @@ success {
             echo "I succeeded!"
     }
 }
+}
 
 def writeKubeConfig(String filePath, String kubeConfig) {
     def kubeConfigContent = credentials(kubeConfig).replaceAll("\r\n?", "\n")
