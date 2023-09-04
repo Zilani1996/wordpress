@@ -10,13 +10,13 @@ agent any
     }
  
 stages{
-  stage("code clone"){
+  stage("Code Clone"){
    steps{
     git url :"https://github.com/Zilani1996/wordpress.git",branch:"master"
     }
   }
 
-stage('Build') {
+stage("Build") {
             steps {
                 script {
                     def appImage = docker.build("${DOCKER_REGISTRY}/wordpress-app:${env.BUILD_NUMBER}")
@@ -25,7 +25,7 @@ stage('Build') {
             }
         }
 
-        stage('Deploy') {
+        stage("Deploy") {
             steps {
                 script {
                     def kubeConfigPath = writeKubeConfig("${env.WORKSPACE}/kubeconfig", env.KUBE_CONFIG)
@@ -34,7 +34,7 @@ stage('Build') {
             }
         }
 
-        stage('Cleanup') {
+        stage("Cleanup") {
             steps {
                 script {
                     def kubeConfigPath = writeKubeConfig("${env.WORKSPACE}/kubeconfig", env.KUBE_CONFIG)
