@@ -20,7 +20,7 @@ stage("Build") {
             steps {
                 script {
                      docker login registry.digitalocean.com
-                     withCredentials([file(credentialsId: 'registry_id', variable: 'DOCKER_REGISTRY')]){
+                     withCredentials([usernamePassword(credentialsId: 'registry_id', variable: 'DOCKER_REGISTRY')]){
                     def appImage = docker.build("${DOCKER_REGISTRY}/wordpress-app:${env.BUILD_NUMBER}")
                     appImage.push()
                    }
