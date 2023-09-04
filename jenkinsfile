@@ -44,6 +44,11 @@ stage("Build") {
         }
     }
 
+post {
+        always {
+            deleteDir()
+        }
+    }
    
 }
 
