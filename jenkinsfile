@@ -19,8 +19,8 @@ stages{
 stage("Build") {
             steps {
                 script {
-                    def appImage = docker.build("${DOCKER_REGISTRY}/wordpress-app1:${env.BUILD_NUMBER}")
-                    appImage.push()
+                    def appImage = docker.build("${DOCKER_REGISTRY}/wordpress-app:${env.BUILD_NUMBER}")
+                    appImage.push('registry_id')
                 }
             }
         }
