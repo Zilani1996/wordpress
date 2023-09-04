@@ -20,7 +20,7 @@ stage("Build") {
             steps {
                 script {
                      // login to registry and build
-                      docker.withRegistry("${DOCKER_REGISTRY}", "${DOCKER_USERNAME}", "${DOCKER_PASSWORD}") {
+                      docker.withRegistry("$DOCKER_REGISTRY", "$DOCKER_USERNAME", "$DOCKER_PASSWORD") {
                          def appImage = docker.build("wordpress_app:${env.BUILD_NUMBER}")
                    // def appImage = docker.build("${DOCKER_REGISTRY}/wordpress-app:${env.BUILD_NUMBER}")
                     appImage.push()
