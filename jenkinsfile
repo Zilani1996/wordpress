@@ -26,10 +26,10 @@ stage("Build") {
                 script { 
    withCredentials([usernamePassword(credentialsId:"registry_id",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
                    def appImage = docker.build("${DOCKER_REGISTRY}/wordpress-app:${env.BUILD_NUMBER}")
-                    echo  "docker login registry.digitalocean.com"
-
+                   echo  "docker login registry.digitalocean.com"
+                   sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass} "
                     appImage.push()
-                }
+                          }
                  }
             }
         }
