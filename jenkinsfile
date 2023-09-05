@@ -2,7 +2,8 @@ pipeline{
 agent any
 
  environment {
-       registryCredential = 'registry_id'
+       registryCredential = "${registryCredential}"
+      // registryCredential = 'registry_id'
        //DOCKER_REGISTRY = "${DOCKER_REGISTRY}"
        DOCKER_USERNAME =  "${DOCKER_USERNAME}"
        DOCKER_PASSWORD = "${DOCKER_PASSWORD}"
