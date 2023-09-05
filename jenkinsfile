@@ -24,7 +24,7 @@ stages{
 stage("Build") {
             steps {
                 script { 
-                   docker.withRegistry(DOCKER_REGISTRY_URL, DOCKER_USERNAME, DOCKER_PASSWORD){
+                   docker.withRegistry("${DOCKER_REGISTRY_URL}", "${DOCKER_USERNAME}", "${DOCKER_PASSWORD}){
                   // def appImage = docker.build("${DOCKER_REGISTRY}/wordpress-app:${env.BUILD_NUMBER}")
                    def customImageTag = "myapp:${env.BUILD_NUMBER}"
                         def dockerImage = docker.build(customImageTag)
