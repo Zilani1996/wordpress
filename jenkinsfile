@@ -3,6 +3,7 @@ agent any
 
  environment {
       //registryCredential = "${registryCredential}"
+        dockerpwd = credentials('registry_id')
         registryCredential = 'registry_id'
        //DOCKER_REGISTRY1 = "${DOCKER_REGISTRY1}"
       //DOCKER_USERNAME =  "${DOCKER_USERNAME}"
