@@ -24,8 +24,10 @@ stages{
 stage("build") {
             steps {
                 script {
+                 docker.withRegistry('registry.digitalocean.com/vendorcity', 'registry_id'){
                     def appImage = docker.build("${DOCKER_REGISTRY}/wordpress-app:${env.BUILD_NUMBER}")
                     appImage.push()
+                }
                 }
             }
         }
