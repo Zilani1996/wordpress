@@ -4,8 +4,8 @@ agent any
  environment {
         registryCredential = 'registry_id'
         DOCKER_REGISTRY = 'registry.digitalocean.com/vendorcity'
-        $DOCKER_USERNAME = credentials('registry_id')
-        $DOCKER_PASSWORD = credentials('registry_id')
+        DOCKER_USERNAME = credentials('registry_id')
+        DOCKER_PASSWORD = credentials('registry_id')
         KUBE_CONFIG = credentials('registry_id')
     }
  
