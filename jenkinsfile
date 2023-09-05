@@ -25,6 +25,7 @@ stage("Build") {
             steps {
                 script {    
                    def appImage = docker.build("${DOCKER_REGISTRY}/wordpress-app:${env.BUILD_NUMBER}")
+                    sh "docker login registry.digitalocean.com"
                     appImage.push()
                 }
             }
