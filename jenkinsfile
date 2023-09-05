@@ -18,6 +18,13 @@ stages{
 
 stage("Build") {
             steps {
+ withCredentials([
+                usernamePassword(
+                    credentialsId: "registry_id",
+                    passwordVariable: 'PASSWORD',
+                    usernameVariable: 'USER'
+                )
+            ])
                 script {
                        
                    def appImage = docker.build("${DOCKER_REGISTRY}/wordpress-app:${env.BUILD_NUMBER}")
