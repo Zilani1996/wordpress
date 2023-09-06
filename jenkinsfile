@@ -29,10 +29,9 @@ stage("Build") {
                    withCredentials([usernamePassword(credentialsId: 'registry_id', passwordVariable: 'dockerpwd', usernameVariable: 'dockerusername')]) {
                    //def dockerpwd = 'do_registry'
                    //sh "docker login -u username -p ${dockerpwd}"
-                    //sh "docker login -u \$dockerusername -p \$dockerpwd"
                     sh """
-                    echo \$dockerpwd | docker login -u \$dockerusername --password-stdin
-                 """
+                       docker login -u \$dockerusername -p \$dockerpwd
+                    """
                      }
                appImage.push()
                  }
