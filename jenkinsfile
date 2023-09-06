@@ -3,16 +3,16 @@ agent any
 
  environment {
       //registryCredential = "${registryCredential}"
-        dockerpwd = credentials('do_registry')
+        $dockerpwd = credentials('do_registry')
         registryCredential = 'registry_id'
        //DOCKER_REGISTRY1 = "${DOCKER_REGISTRY1}"
       //DOCKER_USERNAME =  "${DOCKER_USERNAME}"
       //DOCKER_PASSWORD = "${DOCKER_PASSWORD}"
        //KUBE_CONFIG = "${KUBE_CONFIG}"
         DOCKER_REGISTRY = "registry.digitalocean.com/vendorcity"
-        DOCKER_USERNAME = credentials('do_registry	')
-        DOCKER_PASSWORD = credentials('do_registry	')
-        KUBE_CONFIG = credentials('do_registry	')
+        $DOCKER_USERNAME = credentials('do_registry	')
+        $DOCKER_PASSWORD = credentials('do_registry	')
+        $KUBE_CONFIG = credentials('do_registry	')
     }
  
 stages{
