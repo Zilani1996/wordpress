@@ -30,7 +30,7 @@ stage("Build") {
                    //def dockerpwd = 'do_registry'
                    //sh "docker login -u username -p ${dockerpwd}"
                     sh """
-                       docker login -u \$dockerusername -p \$dockerpwd
+                       docker login -u \$dockerusername -p \$dockerpwd  --password-stdin
                     """
                      }
                appImage.push()
