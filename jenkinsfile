@@ -26,9 +26,10 @@ stage("Build") {
             steps {
                 script { 
                    def appImage = docker.build("${DOCKER_REGISTRY}/wordpress-app:${env.BUILD_NUMBER}")
-                   withCredentials([usernamePassword(credentialsId: 'registry_id', passwordVariable: 'dockerpwd')]) {
-                    def dockerpwd = 'do_registry'
-                    sh "docker login -u username -p ${dockerpwd}"
+                   withCredentials([usernamePassword(credentialsId: 'registry_id', passwordVariable: 'dockerpwd', usernameVariable: 'dockerusername')]) {
+                   //def dockerpwd = 'do_registry'
+                   // sh "docker login -u username -p ${dockerpwd}"
+                     sh "docker login -u \$dockerusername -p \$dockerpwd"
                      }
                appImage.push()
                  }
