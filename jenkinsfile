@@ -1,6 +1,5 @@
 pipeline{
 agent any
-
  environment {
       //registryCredential = "${registryCredential}"
         dockerpwd = credentials('registry_id')
